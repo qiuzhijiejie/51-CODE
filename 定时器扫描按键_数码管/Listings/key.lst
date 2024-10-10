@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.7.0   KEY                                                               10/03/2024 17:44:23 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE KEY
+OBJECT MODULE PLACED IN .\Objects\key.obj
+COMPILER INVOKED BY: D:\KEIL_STM32\C51\BIN\C51.EXE key.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\ke
+                    -y.lst) OBJECT(.\Objects\key.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "delay.h"
+   3          
+   4          unsigned char keynum;
+   5          
+   6          
+   7          unsigned char key()
+   8          {
+   9   1              unsigned char temp;
+  10   1              temp=keynum;
+  11   1              keynum=0;
+  12   1              return temp;
+  13   1      }
+  14          
+  15          
+  16          unsigned char key_gatstate() // 获取独立按键码
+  17          {
+  18   1          unsigned char keynum = 0;
+  19   1      
+  20   1          if (P3_1 == 0) {  keynum = 1; }
+  21   1          
+  22   1          if (P3_0 == 0) {  keynum = 2; }
+  23   1          
+  24   1          if (P3_2 == 0) {  keynum = 3; }
+  25   1          
+  26   1          if (P3_3 == 0) {  keynum = 4; }
+  27   1      
+  28   1          return keynum;
+  29   1      }
+  30          
+  31          
+  32          
+  33          
+  34          void key_lop()
+  35          {
+  36   1              static unsigned char last,now;
+  37   1              last=now;
+  38   1              now=key_gatstate();
+  39   1              if(last==1 && now==0)//按键处于松手
+  40   1              {
+  41   2                      keynum=1;
+  42   2              }
+  43   1              
+  44   1              if(last==2 && now==0)
+  45   1              {
+  46   2                      keynum=2;
+  47   2              }
+  48   1              
+  49   1              if(last==3 && now==0)
+  50   1              {
+  51   2                      keynum=3;
+  52   2              }
+  53   1              
+  54   1              
+C51 COMPILER V9.60.7.0   KEY                                                               10/03/2024 17:44:23 PAGE 2   
+
+  55   1              if(last==4 && now==0)
+  56   1              {
+  57   2                      keynum=4;
+  58   2              }
+  59   1      
+  60   1      }       
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     85    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      3    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

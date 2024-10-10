@@ -1,0 +1,9 @@
+".\Objects\main.obj",
+".\Objects\Delay.obj",
+".\Objects\key.obj",
+".\Objects\livesmg.obj",
+".\Objects\Timer0.obj",
+".\Objects\AT24C02.obj",
+".\Objects\i2c.obj" 
+TO ".\Objects\project" 
+PRINT(".\Listings\project.m51") RAMSIZE(256) 
