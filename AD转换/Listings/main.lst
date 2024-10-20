@@ -1,0 +1,46 @@
+C51 COMPILER V9.60.7.0   MAIN                                                              10/20/2024 18:35:56 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Objects\main.obj
+COMPILER INVOKED BY: D:\KEIL_STM32\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\m
+                    -ain.lst) OBJECT(.\Objects\main.obj)
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          #include "lcd1602.h"
+   3          #include "delay.h"
+   4          #include "XPT2026.h"
+   5          
+   6          unsigned int ADC;
+   7          
+   8          void main()
+   9          {
+  10   1              LCD_Init();
+  11   1              LCD_ShowString(1,1,"ADJ NTC RG");
+  12   1              while(1)
+  13   1              {
+  14   2                  ADC=XPT2026_readAD(XPT2026_XP_8);
+  15   2                      LCD_ShowNum(2,1,ADC,3);
+  16   2                      ADC=XPT2026_readAD(XPT2026_YP_8);
+  17   2                      LCD_ShowNum(2,5,ADC,3);
+  18   2                      ADC=XPT2026_readAD(XPT2026_VBAT_8);
+  19   2                      LCD_ShowNum(2,9,ADC,3);
+  20   2                      Delay(10);
+  21   2              }
+  22   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     94    ----
+   CONSTANT SIZE    =     11    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
